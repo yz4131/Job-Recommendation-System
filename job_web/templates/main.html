@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title>Salary prediction model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        jobcat:
+        <input name="jobcat" type="text" list="jobcat" required>
+        <datalist id='jobcat' >
+            <option >CEO</option>
+            <option>CFO</option>
+            <option>CTO</option>
+            <option>JANITOR</option>
+            <option>JUNIOR</option>
+            <option>MANAGER</option>
+            <option>SENIOR</option>
+            <option>VICE_PRESIDENT</option>
+        </datalist>
+        <br>
+        <br>
+        degree:
+        <input name="degree" type="text" list="degree" required>
+        <datalist id='degree' >
+            <option>HIGH_SCHOOL</option>
+            <option>BACHELORS</option>
+            <option>MASTERS</option>
+            <option>DOCTORAL</option>
+            <option>NONE</option>
+        </datalist>
+        <br>
+        <br>
+        major:
+        <input name="major" type="text" LIST="major" required>
+        <datalist id='major' >
+            <option>COMPSCI</option>
+            <OPTION>ENGINEERING</OPTION>
+            <option>MATH</option>
+            <option>PHYSCIS</option>
+            <option>CHEMISTRY</option>
+            <option>BIOLOGY</option>
+            <option>BUSINESS</option>
+            <option>LITERATURE</option>
+            <option>NONE</option>
+        </datalist>
+        <br>
+         <br>
+        industry:
+        <input name="industry" type="text" LIST="industry" required>
+        <datalist id='industry' >
+            <option>AUTO</option>
+            <OPTION>EDUCATION</OPTION>
+            <option>FINANCE</option>
+            <option>HEALTH</option>
+            <option>OIL</option>
+            <option>SERVICE</option>
+            <option>WEB</option>
+        </datalist>
+        <br>
+        <br>
+        workexperience:
+        <input name="workexperience" type="number" required>
+        <br>
+        <br>
+        dis:
+        <input name="dis" type="number" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div  class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Salary Predicted:
+   		<p style="font-size:50px">{{ result}}</p>
+    {% endif %}
+</div>
+
+</html>
